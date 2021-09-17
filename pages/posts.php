@@ -89,12 +89,12 @@
 
             <form method="POST" action="./posts.php?topic_id=<?php echo $topic_id ?>">
                 <div class="form-row">
-                    <input type="text" class="form-control is-valid" name="post" id="post" placeholder="Add apost" required>
+                    <input type="text" class="form-control is-valid" name="post" id="post" placeholder="Add a post" required>
 
                 </div>
 
                 <div class="form-row">
-                    <div class="col-md-4 mb-3"> <button class="btn btn-success" type="submit" name="addPost">Add aPost</button></div>
+                    <div class="col-md-4 mb-3"> <button class="btn btn-success" type="submit" name="addPost">Add a Post</button></div>
 
                 </div>
 
