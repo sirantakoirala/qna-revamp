@@ -6,29 +6,12 @@ $conn = connectToDB();
 if (isset($_SESSION['authenticated'])) {
   header("Location: /agora/pages/dashboard.php");
 }
-function valid_pass($candidate)
-{
-  $r1 = '/[A-Z]/';  //Uppercase
-  $r2 = '/[a-z]/';  //lowercase
-  $r3 = '/[!@#$%^&*()\-_=+{};:,<.>]/';  // whatever you mean by 'special char'
-  $r4 = '/[0-9]/';  //numbers
 
-  if (preg_match_all($r1, $candidate, $o) < 2) return false;
-
-  if (preg_match_all($r2, $candidate, $o) < 2) return false;
-
-  if (preg_match_all($r3, $candidate, $o) < 2) return false;
-
-  if (preg_match_all($r4, $candidate, $o) < 2) return false;
-
-  if (strlen($candidate) < 8) return false;
-
-  return true;
-}
 if (isset($_POST['register'])) {
 
 
   $email  = $_POST['email'];
+  $confirmPass = $_POST['confirmPassword'];
   $pass = $_POST['password'];
   $username = $_POST['username'];
   if ($email == "" || $pass == "" || $username == "") {
@@ -36,7 +19,31 @@ if (isset($_POST['register'])) {
 
     exit();
   }
+  if ($pass != $confirmPass) {
+    echo "<script>alert('Password doesnt match');window.location.href='register.php'</script> ";
+    exit();
+  }
 
+  // Validate password strength
+  $uppercase = preg_match('@[A-Z]@', $pass);
+  $lowercase = preg_match('@[a-z]@', $pass);
+  $number    = preg_match('@[0-9]@', $pass);
+  $specialChars = preg_match('@[^\w]@', $pass);
+
+  if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($pass) < 8) {
+    echo "<script>alert('Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.'); window.location.href='register.php';</script>";
+    exit();
+  }
+
+
+
+  $checkEmailQuery = "SELECT email from users where email = '$email'";
+  $emailResult = mysqli_query($conn, $checkEmailQuery) or die(mysqli_error($conn));
+  if (mysqli_num_rows($emailResult) == 1) {
+    echo "<script>alert('Email already in use.');
+  window.location.href='register.php';</script>";
+    exit();
+  }
   //   if(!valid_pass($pass)){
   //     echo "<script>alert('Password doesnt meet the requirement contain at least (1) upper case letter ,contain at least (1) lower case letter ,contain at least (1) number or special character,contain at least (8) characters in length');window.location.href='register.php'</script> ";
   //     exit();
@@ -85,7 +92,7 @@ if (isset($_POST['register'])) {
         <div class="col-lg-6">
           <div class="card1 pb-5">
             <div class="row">
-              <img src="./static/images/signin.svg" class="logo" />
+              <img src="./static/images/logo5.png" class="logo" />
             </div>
             <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
               <img src="./static/images/signin.svg" class="image" />
@@ -108,32 +115,44 @@ if (isset($_POST['register'])) {
                 <label class="mb-1">
                   <h6 class="mb-0 text-sm">Username</h6>
                 </label>
-                <input class="mb-4" type="text" name="username" placeholder="Enter a valid email address" />
+                <input class="mb-4" type="text" name="username" placeholder="Enter your Username" />
               </div>
               <div class="row px-3">
                 <label class="mb-1">
                   <h6 class="mb-0 text-sm">First name</h6>
                 </label>
-                <input class="mb-4" type="text" name="fname" placeholder="Enter ar first name" />
+                <input class="mb-4" type="text" name="fname" placeholder="Enter your first name" />
               </div>
               <div class="row px-3">
                 <label class="mb-1">
                   <h6 class="mb-0 text-sm">Last name</h6>
                 </label>
-                <input class="mb-4" type="text" name="lname" placeholder="Enter a last name" />
+                <input class="mb-4" type="text" name="lname" placeholder="Enter your last name" />
               </div>
               <div class="row px-3">
                 <label class="mb-1">
                   <h6 class="mb-0 text-sm">Email Address</h6>
                 </label>
-                <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address" />
+                <input class="mb-4" type="email" name="email" placeholder="Enter a valid email address" />
               </div>
               <div class="row px-3">
                 <label class="mb-1">
                   <h6 class="mb-0 text-sm">Password</h6>
                 </label>
-                <input type="password" name="password" placeholder="Enter password" />
+                <input class="mb-4" type="password" name="password" placeholder="Enter password" />
               </div>
+
+              <div class="row px-3">
+                <label class="mb-1">
+                  <h6 class="mb-0 text-sm">Confirm Password</h6>
+                </label>
+                <input class="mb-4" type="password" name="confirmPassword" placeholder="confirm password" />
+              </div>
+
+
+
+
+
               <div class="row px-3 mb-4">
 
               </div>
@@ -152,7 +171,7 @@ if (isset($_POST['register'])) {
       </div>
       <div class="bg-blue py-4">
         <div class="row px-3">
-          <small class="ml-4 ml-sm-5 mb-2">Agora Team © 2021 . All rights reserved</small>
+          <small class="ml-4 ml-sm-5 mb-2">Agora Team © 2021.All rights reserved</small>
           <div class="social-contact ml-4 ml-sm-auto">
             <span class="fa fa-facebook mr-4 text-sm"></span>
             <span class="fa fa-google-plus mr-4 text-sm"></span>
