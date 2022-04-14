@@ -4,7 +4,13 @@ require("./config/db.php");
 $conn = connectToDB();
 
 if (isset($_SESSION['authenticated'])) {
-  header("Location: ./pages/dashboard.php");
+  if ($role == "student") {
+    header('location: ./pages/dashboard.php');
+  } else if ($role == "teacher"){
+    header('location: ./pages/teacher_dashboard.php');
+  } else if ($role == "admin"){
+    header('location: ./pages/admin_dashboard.php');
+  }
 }
 
 if (isset($_POST['login'])) {
@@ -28,7 +34,13 @@ if (isset($_POST['login'])) {
         $_SESSION['email']  = $email;
         $_SESSION['role'] = $role;
         $_SESSION['authenticated'] = true;
-        header('location: ./pages/dashboard.php/');
+        if ($role == "student") {
+          header('location: ./pages/dashboard.php');
+        } else if ($role == "teacher"){
+          header('location: ./pages/teacher_dashboard.php');
+        } else if ($role == "admin"){
+          header('location: ./pages/admin_dashboard.php');
+        }
       } else {
         echo "<script>alert('invalid username/password');
       window.location.href= 'index.php';</script>";
@@ -54,8 +66,8 @@ if (isset($_POST['login'])) {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="./static/style.css" />
-  <link href="pictures/logo.png" rel="icon" />>
+  <link rel="stylesheet" href="./static/style.css">
+  <link href="pictures/logo.png" rel="icon" >
   <title>Agora-Explore Your Knowledge</title>
   </title>
 </head>
@@ -67,17 +79,17 @@ if (isset($_POST['login'])) {
         <div class="col-lg-6">
           <div class="card1 pb-5">
             <div class="row">
-              <img src="./static/images/logo5.png" class="logo" />
+             
             </div>
-            <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
-              <img src="./static/images/signin.svg" class="image" />
+            <div id="mainlogo">
+              <img src="./pictures/svg/logo4.svg" class="image" id="mainlogo" style="width: 689px; height: 446px; margin: 1%; margin-top: 10%; ">
             </div>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="card2 card border-0 px-4 py-5">
             <div class="row mb-4 px-3">
-              <h6 class="mb-0 mr-4 mt-2">Sign in</h6>
+              <h6 style=" font-family:sans-serif;FONT-SIZE: 36px;">Sign in</h6>
 
             </div>
             <div class="row px-3 mb-4">
@@ -88,13 +100,13 @@ if (isset($_POST['login'])) {
             <form action="index.php" method="POST">
               <div class="row px-3">
                 <label class="mb-1">
-                  <h6 class="mb-0 text-sm">Email Address</h6>
+                  <h6 style="font-size: 20px; Font-family: sans-serif;">Email Address</h6>
                 </label>
                 <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address" />
               </div>
               <div class="row px-3">
                 <label class="mb-1">
-                  <h6 class="mb-0 text-sm">Password</h6>
+                  <h6  style="font-size: 20px; Font-family: sans-serif;">Password</h6>
                 </label>
                 <input type="password" name="password" placeholder="Enter password" />
               </div>
@@ -115,7 +127,7 @@ if (isset($_POST['login'])) {
                 <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a> -->
               </div>
               <div class="row mb-3 px-3">
-                <button type="submit" class="btn btn-blue text-center" name="login">
+                <button type="submit" class="btn-login" name="login" style="width: 28%; border-radius: 8px; font-family: sans-serif; font-size: 20px; background-color: #4A6884; color: azure; height: 39px;">
                   Login
                 </button>
               </div>
@@ -127,9 +139,9 @@ if (isset($_POST['login'])) {
           </div>
         </div>
       </div>
-      <div class="bg-blue py-4">
+      <div class="bg" style="background-color:#4A6884;height: 64px">
         <div class="row px-3">
-          <small class="ml-4 ml-sm-5 mb-2">Agora Team © 2021 . All rights reserved.</small>
+          <small class="footer-text" style="float: right; margin-left: 32%; margin-top: 2%; color:white; font-family: sans-serif; font-size: 18px;">Agora Team © 2021 . All rights reserved.</small>
           <!-- <div class="social-contact ml-4 ml-sm-auto">
               <span class="fa fa-facebook mr-4 text-sm"></span>
               <span class="fa fa-google-plus mr-4 text-sm"></span>
