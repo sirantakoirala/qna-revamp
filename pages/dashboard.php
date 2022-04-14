@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard</title>
-  <link href="./styles/agora.css" rel="stylesheet"> 
+  <link href="../styles/main.css" rel="stylesheet"> 
  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -14,12 +14,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
   
 
-
+<!-- Style for dasboard-->
 <style>
-
-  
-  
-  
  .bg-modal {
    width:100%;
    height:100%;
@@ -31,9 +27,6 @@
    align-items: center;
   display:none;
   overflow:hidden;
-  
-
-  
 
  }
  .modal-content {
@@ -61,26 +54,28 @@ cursor:pointer;
     width: 99%;
     border-color: black;
     border-radius: 10px;
-   
-   
-    padding-bottom: 2%;
-    padding-top: 2%;
-    margin-left: 0%;
+    
+    padding: 3%;
+    margin-left: -2%;
     margin-top: 2%;
 }
- 
- 
- 
+
+.askquesarea{
+  margin-bottom: 3.5%;
+    border: 0.5px;
+   
+    margin-right: 30.5%;
+    height: 79px;
+    border-color: #afafaf;
+    border: solid 1px;
+    border-radius: 9px;
+}
  </style>
 
+
 </head>
-
-
-
-
 <body>
-  
-
+<!--php code to connect the database-->
   <?php include("../includes/navbar.php") ?>
   <?php
   $conn = connectToDB();
@@ -98,26 +93,32 @@ cursor:pointer;
   ?>
   
   <
-  <main style="margin-left: 0%;
-    padding-top: 0%;
-    margin-top: 0.5%;
-    background: white; ">
+  <main style="margin-left: 0%; padding-top: 0%; margin-top: 0.5%; background: white;
+}">
   <?php include("../includes/sidebar.php") ?>
 
- <!-- This section is fro the button pop-up when we click the ask question button-->
+ <!-- This section is for the button pop-up when we click the ask question button-->
   <div class="bg-modal">
   
    <div class="modal-content">
      
-     <p> Ask question </p> 
+     <p style="font-size: 32px;"> Ask question </p> 
    <div class="close">
      +
    </div>
    
    
   <form method="POST" action="./dashboard.php">
+    <div class="subjecttitle">
+      <label style="margin-left: -56%; font-size: 21px; margin-top:3%;"> Subject </label>
+      <select>
+      <option value ="ITECH 1102"> ITECH 1102</option>
+
+      <option value= "ITECH 1100"> ITECH 1100</option>  
+      </select>
+       </div>
   <div class="question-title">
-    <input type="text" class="question-title">
+    <input type="text" class="question-title" placeholder="Title">
   </div>
   <div class="form-row">
   <input type="text" class="form-control is-valid" name="topic" id="topic" placeholder="Add a topic" style="    height: auto; width: 176%; border-color: black; border-radius: 10px; margin: 2%; padding-top: 2%;  padding-bottom: 38%;">
@@ -135,12 +136,13 @@ cursor:pointer;
           </div>
 
 
-  
-    <div class="container" style="background: white;
-    padding-top: 2%;
-    margin-top: -1%;">
-     <label for="topic" style="font-size: 45px; margin-top: -10%;">Ask Question</label>
-            <button id="modalbtn"> Add question </button>
+  <!-- Body part coding starts from here -->
+    <div class="container" style="background: white; padding-top: 2%; margin-top: -1%;">
+     <div class="askquesarea">
+     <img src="../pictures/svg/person-circle.svg"  style="    margin-top: 0%; height: 45px; margin-left: 3%;">
+    
+     <input type="text"id="modalbtn" placeholder="Add Question" style=" width: 83%;  height: 85%; margin-top: 1%; border-radius: 19px; margin-left: 2%; font-size: 24px; padding: 21px;" >  </input>
+     </div>
             <script>
               
 
@@ -151,14 +153,8 @@ cursor:pointer;
 document.querySelector(".close").addEventListener("click", function() {
 	document.querySelector(".bg-modal").style.display = "none";
 });
-
+    
     </script>
-
-          
-          
-   
-
-
       <?php
       function console_log($output, $with_script_tags = true)
       {
@@ -187,8 +183,8 @@ document.querySelector(".close").addEventListener("click", function() {
            <div class="post-pan" style= "max-width: 70%; margin-left= 10%; border-color:#afafaf; border: solid 1px; border-radius: 9px;margin-bottom: 3%; height:auto;"> 
            <div class= "created">
           <img src="../pictures/svg/person-circle.svg" id="person-logo" style="margin-top: 1%; height: 29px; margin-left: 2%;">
-              <h5 class="created" style="margin-top: 1%; float: right; margin-right: 32%;">Posted By: <?php echo $user ?> |  Created on: <?php echo $date ?></h5></div>
-              <!--<p class="card-text" style="    margin-bottom: 4%; padding-top: 3%; float: right;">Created on: <?php echo $date ?></p>-->
+              <h5 class="created" style=" margin-top: 1%; float: right; margin-right: 24%;">Posted By: <?php echo $user ?> |  Created on: <?php echo $date ?></h5></div>
+             
             
             
 
