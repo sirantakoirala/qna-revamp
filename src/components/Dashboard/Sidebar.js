@@ -9,6 +9,7 @@ import {
   Image,
 } from "semantic-ui-react";
 import UserIcon from "../../images/elliot.jpg";
+import AgoraLogo from "../../images/logo4.png";
 import { useUserContext } from "../../context/userContext";
 import { Link } from "react-router-dom";
 
@@ -26,8 +27,7 @@ export const Sidebar = ({ children, items }) => {
         visible={true}
       >
         <Menu.Item as={Link} to="/dashboard">
-          <Icon name="home" />
-          Home
+          <img src= {AgoraLogo} />
         </Menu.Item>
         <Menu.Item as={Link} to="/quizzes">
           <Icon name="gamepad" />

@@ -9,7 +9,7 @@ import {
   Segment,
 } from "semantic-ui-react";
 import { useUserContext } from "../../context/userContext";
-import AgoraLogo from "../../images/logo.png";
+import AgoraLogo from "../../images/logo3.png";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
@@ -34,10 +34,7 @@ export const Login = () => {
 
   return (
     <>
-      <Header as="h2" color="teal" textAlign="center">
-        <Image src={AgoraLogo} />
-        Agora
-      </Header>
+      <Image src={AgoraLogo} />
       <Form size="large" onSubmit={handleLogin}>
         <Segment stacked>
           <Form.Input

@@ -9,7 +9,7 @@ import {
   Message,
   Segment,
 } from "semantic-ui-react";
-import AgoraLogo from "../../images/logo.png";
+import AgoraLogo from "../../images/logo3.png";
 import { useUserContext } from "../../context/userContext";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase-config";
@@ -63,10 +63,7 @@ export const SignUp = () => {
   };
   return (
     <>
-      <Header as="h2" color="teal" textAlign="center">
-        <Image src={AgoraLogo} />
-        Agora
-      </Header>
+      <Image src={AgoraLogo} />
 
       {isSuccess && (
         <Message
