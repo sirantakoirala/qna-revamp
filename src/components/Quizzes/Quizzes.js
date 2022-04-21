@@ -26,7 +26,7 @@ export const Quizzes = () => {
   }, []);
   return (
     <Sidebar>
-      <h1>Quizzes</h1>
+      <h1>Quizzes by Subject</h1>
       <Card.Group>
         {subjectQuizzes.map((quiz) => {
           return (

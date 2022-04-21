@@ -77,7 +77,6 @@ const Dashboard = () => {
                   to={`/topic/${topic.topicId}`}
                   header={topic.topicTitle}
                   meta={topic.topicSubject}
-                  description={topic.topicDescription}
                   extra={
                     <a>
                       <Icon name="user" />

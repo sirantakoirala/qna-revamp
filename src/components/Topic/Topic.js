@@ -86,10 +86,9 @@ export const Topic = () => {
     <Sidebar>
       <Card style={{ width: "100%" }}>
         <Card.Content style={{ width: "100% !important" }}>
-          <Card.Header>{topic.topicTitle}</Card.Header>
+          <Card.Header>{topic.topicTitle}</Card.Header>{topic.user}
           <Card.Meta>{topic.topicSubject}</Card.Meta>
           <Card.Description>{topic.topicDescription}</Card.Description>
-          <Label>{topic.user}</Label>
         </Card.Content>
       </Card>
       <Form onSubmit={handlePost}>

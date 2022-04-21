@@ -60,7 +60,7 @@ export function QuestionModal({ subjectOptions }) {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button>Create</Button>}
+      trigger={<Button>Create Post</Button>}
     >
       <Modal.Header>Topic</Modal.Header>
       <Modal.Content>

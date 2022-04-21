@@ -33,13 +33,13 @@ export function SubjectModal() {
       <Modal.Header>Subject</Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <Header>Add a subject</Header>
+          <Header>Add a Subject</Header>
           <Form onSubmit={handleSubject}>
             <Form.Group>
               <Form.Field
                 control={Input}
-                label="Subject Title"
-                placeholder="Title...."
+                label="Subject Name"
+                placeholder="Subject Name"
                 onChange={(ev) => setSubject(ev.target.value)}
                 value={subject}
               />

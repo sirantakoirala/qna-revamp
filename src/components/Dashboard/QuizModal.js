@@ -63,7 +63,7 @@ const QuizModal = ({ subjectOptions, currentUser }) => {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button>Create a quiz</Button>}
+      trigger={<Button>Create a Quiz Question</Button>}
     >
       <Modal.Header>Quiz</Modal.Header>
       <Modal.Content>

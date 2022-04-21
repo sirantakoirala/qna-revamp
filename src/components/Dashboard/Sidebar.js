@@ -34,8 +34,8 @@ export const Sidebar = ({ children, items }) => {
           Quizzes
         </Menu.Item>
         <Menu.Item as="a">
-          <Icon name="camera" />
-          Channels
+          <Icon name="book" />
+          Subjects
         </Menu.Item>
       </SideBar>
       <SideBar.Pusher style={{ minHeight: "100vh" }}>

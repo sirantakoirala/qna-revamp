@@ -51,8 +51,8 @@ export const Quiz = () => {
           )}
         </div>
         <Message>
-          <Message.Header>No quizzes found</Message.Header>
-          <p>Currently no quizzes is available for this particular subject</p>
+          <Message.Header>No questions found</Message.Header>
+          <p>Currently no quizzes are available for this particular subject</p>
         </Message>
       </Sidebar>
     );
